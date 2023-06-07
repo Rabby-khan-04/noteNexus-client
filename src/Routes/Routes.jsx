@@ -3,6 +3,8 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
+import Instructors from "../Pages/Instructors/Instructors";
+import Classes from "../Pages/Classes/Classes";
 
 export const routes = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ export const routes = createBrowserRouter([
       {
         path: "signup",
         element: <Signup />,
+      },
+      {
+        path: "instructors",
+        element: <Instructors />,
+      },
+      {
+        path: "classes",
+        element: <Classes />,
       },
     ],
   },
