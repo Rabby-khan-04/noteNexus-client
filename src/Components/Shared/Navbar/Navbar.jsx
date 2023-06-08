@@ -25,7 +25,7 @@ const Navbar = () => {
             (isActive ? "text-secondary" : "") + " menu__item"
           }
         >
-          Iinstructors
+          Instructors
         </NavLink>
       </li>
       <li>
