@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
 import Swal from "sweetalert2";
 import { useAuth } from "../../API/useAuth";
+import { saveUser } from "../../API/useUserRole";
 
 const Login = () => {
   const { userSignin } = useAuth();
@@ -23,6 +24,7 @@ const Login = () => {
     userSignin(email, password)
       .then((result) => {
         const loggedUser = result.user;
+        saveUser(loggedUser);
         Swal.fire({
           position: "center",
           icon: "success",

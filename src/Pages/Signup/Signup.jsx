@@ -73,6 +73,7 @@ const Signup = () => {
         if (loggedUser) {
           updateUserProfile(name, image)
             .then(() => {
+              saveUser(loggedUser);
               Swal.fire({
                 position: "center",
                 icon: "success",
