@@ -76,19 +76,19 @@ const Dropdown = ({ menuItem }) => {
               <div className="block lg:hidden">{menuItem}</div>
               {user ? (
                 <>
-                  <button onClick={handleLogout} className="block menu__item">
+                  <button onClick={handleLogout} className="w-full menu__item">
                     Logout
                   </button>
                 </>
               ) : (
                 <>
                   <li>
-                    <Link to="/login" className="menu__item block">
+                    <Link to="/login" className="menu__item w-full">
                       Login
                     </Link>
                   </li>
                   <li>
-                    <Link to="/signup" className="menu__item block">
+                    <Link to="/signup" className="menu__item w-full">
                       Register
                     </Link>
                   </li>

@@ -13,3 +13,11 @@
 .dropdown__menu li {
   @apply hover:bg-gray-100 transition-all duration-300;
 }
+
+.input__field {
+  @apply bg-transparent text-lg text-accent w-full h-12 px-4 focus:outline-none;
+}
+
+.input__wrapper {
+  @apply form-control border-b border-black flex items-center flex-row;
+}
