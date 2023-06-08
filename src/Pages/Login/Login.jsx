@@ -5,15 +5,42 @@ import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
+import Swal from "sweetalert2";
+import { useAuth } from "../../API/useAuth";
 
 const Login = () => {
+  const { userSignin } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+  const onSubmit = (data) => {
+    const email = data.email;
+    const password = data.password;
+
+    // User Sign In Function
+    userSignin(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully Logged IN!!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${err.message}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
 
   return (
     <section className="h-[calc(100vh-72px)] flex justify-center items-center">
@@ -40,11 +67,11 @@ const Login = () => {
                   <FaUserAlt className="text-xl" />
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   className="input__field"
                   placeholder="Email"
-                  {...register("Email", { required: true })}
+                  {...register("email", { required: true })}
                 />
               </div>
               <div className="input__wrapper">
@@ -56,7 +83,7 @@ const Login = () => {
                   id="password"
                   className="input__field"
                   placeholder="Password"
-                  {...register("Password", { required: true })}
+                  {...register("password", { required: true })}
                 />
               </div>
               <input
