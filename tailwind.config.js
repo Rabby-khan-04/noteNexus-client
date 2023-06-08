@@ -2,7 +2,12 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        luckiest: ["Luckiest Guy", "cursive"],
+        nunito: ["Nunito Sans", "sans-serif"],
+      },
+    },
   },
   daisyui: {
     themes: [
