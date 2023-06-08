@@ -39,5 +39,6 @@ export const useAxiosSecure = () => {
         }
       }
     );
-  }, []);
+  }, [userLogout, navigate]);
+  return [axiosSecure];
 };

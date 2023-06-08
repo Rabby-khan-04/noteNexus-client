@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-accent">
+    <footer className="bg-accent mt-24">
       <div className="container pt-32 pb-5">
         <div className="-mt-44 mb-4">
           <Newsletter />

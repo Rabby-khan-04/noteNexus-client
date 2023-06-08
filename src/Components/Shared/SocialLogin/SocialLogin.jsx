@@ -3,17 +3,20 @@ import googleIcon from "../../../assets/Images/Login/google.svg";
 import { useAuth } from "../../../API/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import { saveUser } from "../../../API/useUserRole";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Google Login Handler
   const handleGoogleLogin = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
     const from = location?.state?.from?.pathname || "/";
     googleLogin()
-      .then(() => {
+      .then((result) => {
+        const loggedUser = result.user;
+        saveUser(loggedUser);
         Swal.fire({
           position: "center",
           icon: "success",
