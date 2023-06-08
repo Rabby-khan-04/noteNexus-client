@@ -21,3 +21,7 @@
 .input__wrapper {
   @apply form-control border-b border-black flex items-center flex-row;
 }
+.dropdown__container {
+  position: relative;
+  z-index: 999;
+}

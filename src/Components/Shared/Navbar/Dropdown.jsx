@@ -64,8 +64,9 @@ const Dropdown = ({ menuItem }) => {
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
+        className="dropdown__container"
       >
-        <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
           <div
             className="py-1"
             role="menu"
@@ -76,7 +77,15 @@ const Dropdown = ({ menuItem }) => {
               <div className="block lg:hidden">{menuItem}</div>
               {user ? (
                 <>
-                  <button onClick={handleLogout} className="w-full menu__item">
+                  <li>
+                    <Link to="/dashboard" className="menu__item w-full">
+                      Dashboard
+                    </Link>
+                  </li>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left menu__item"
+                  >
                     Logout
                   </button>
                 </>

@@ -4,10 +4,8 @@ import slider2 from "../../../assets/Images/Home/Slider/slider-2.jpg";
 import slider3 from "../../../assets/Images/Home/Slider/slider-3.jpg";
 import slider4 from "../../../assets/Images/Home/Slider/slider-4.jpg";
 import slider5 from "../../../assets/Images/Home/Slider/slider-5.jpg";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation, Pagination } from "swiper";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 import Slide from "./Slide";
 
 const Slider = () => {
@@ -45,18 +43,11 @@ const Slider = () => {
   ];
 
   return (
-    <Swiper
-      navigation={true}
-      modules={[Navigation, Pagination]}
-      loop={true}
-      className="mySwiper"
-    >
+    <Carousel autoPlay={true} infiniteLoop={true} showStatus={false}>
       {slideData.map((item, index) => (
-        <SwiperSlide key={index}>
-          <Slide item={item} />
-        </SwiperSlide>
+        <Slide key={index} item={item} />
       ))}
-    </Swiper>
+    </Carousel>
   );
 };
 
