@@ -13,5 +13,4 @@ export const saveUser = async (user) => {
     `${import.meta.env.VITE_BASE_URL}/user/${user?.email}`,
     currentUser
   );
-  console.log(res);
 };

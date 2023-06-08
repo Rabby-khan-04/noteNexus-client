@@ -1,14 +1,17 @@
 import React from "react";
-import { FaGoogle } from "react-icons/fa";
 import googleIcon from "../../../assets/Images/Login/google.svg";
 import { useAuth } from "../../../API/useAuth";
 import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
 
   // Google Login Handler
   const handleGoogleLogin = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location?.state?.from?.pathname || "/";
     googleLogin()
       .then(() => {
         Swal.fire({
@@ -18,6 +21,7 @@ const SocialLogin = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         Swal.fire({

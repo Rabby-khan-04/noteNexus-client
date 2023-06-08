@@ -5,11 +5,14 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { FaEnvelope, FaImage, FaUserAlt } from "react-icons/fa";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
 import signupImg from "../../assets/Images/Login/login.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -81,6 +84,7 @@ const Signup = () => {
                 showConfirmButton: false,
                 timer: 1500,
               });
+              navigate(from, { replace: true });
             })
             .catch((err) => {
               Swal.fire({

@@ -16,7 +16,7 @@ import axios from "axios";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [userLoading, setUserLoading] = useState(false);
+  const [userLoading, setUserLoading] = useState(true);
   const [user, setUser] = useState(null);
 
   // Create Auth
@@ -68,9 +68,9 @@ const AuthProvider = ({ children }) => {
           .then((data) => {
             const token = data.data.token;
             localStorage.setItem("user-access-token", token);
-            setUserLoading(false);
           });
       }
+      setUserLoading(false);
     });
     return () => unsubscribe();
   }, []);
