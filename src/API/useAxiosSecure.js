@@ -23,16 +23,18 @@ export const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use(
       (res) => res,
       (err) => {
+        console.log(err);
         if (
           err?.response &&
           (err?.response?.status === 403 || err?.response?.status === 401)
         ) {
+          console.log("Hitting here");
           userLogout();
           navigate("/login");
           Swal.fire({
             position: "center",
             icon: "error",
-            title: `${err?.response?.data.error}`,
+            title: `${err?.message}`,
             showConfirmButton: false,
             timer: 1500,
           });
