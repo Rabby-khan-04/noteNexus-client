@@ -140,14 +140,14 @@ const ClassCard = ({ item, refetchClasses }) => {
           </div>
           <div className=" space-y-2">
             <button
-              disabled={status === "Approve" || status === "Denied"}
+              disabled={status === "Approved" || status === "Denied"}
               className="btn btn-block btn-accent text-lg text-white"
               onClick={() => handleApprove(_id)}
             >
               Approve
             </button>
             <button
-              disabled={status === "Approve" || status === "Denied"}
+              disabled={status === "Approved" || status === "Denied"}
               className="btn btn-block btn-error text-lg text-white"
               onClick={openModal}
             >

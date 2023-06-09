@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import DashboardTitle from "../../../Components/Dashboard/DashboardTitle";
 
 const MyClasses = () => {
   const {
@@ -12,40 +13,8 @@ const MyClasses = () => {
   return (
     <section>
       <div className="db__container">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            type="text"
-            placeholder="Class Nmae"
-            {...register("Class Nmae", { required: true })}
-          />
-          <input
-            type="url"
-            placeholder="Class Image"
-            {...register("Class Image", { required: true })}
-          />
-          <input
-            type="text"
-            placeholder="Instructor Name"
-            {...register("Instructor Name", { required: true })}
-          />
-          <input
-            type="email"
-            placeholder="Instructor Email"
-            {...register("Instructor Email", { required: true })}
-          />
-          <input
-            type="number"
-            placeholder="Available Seats"
-            {...register("Available Seats", { required: true })}
-          />
-          <input
-            type="number"
-            placeholder="Price"
-            {...register("Price", { required: true })}
-          />
-
-          <input type="submit" />
-        </form>
+        <DashboardTitle title="My Classes" />
+        <div className="grid grid-cols-3 gap-6 mt-6"></div>
       </div>
     </section>
   );
