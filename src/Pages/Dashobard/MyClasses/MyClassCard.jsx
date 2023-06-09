@@ -88,7 +88,7 @@ const MyClassCard = ({ item }) => {
               />
             </div>
             <p className="text-base text-accent font-bold font-nunito">
-              Total Enroled Student: {enroled || "0"}
+              Total Enroled Student: {enroled}
             </p>
           </div>
           <div className=" space-y-2">

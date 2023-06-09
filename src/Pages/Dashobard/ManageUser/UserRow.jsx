@@ -42,7 +42,7 @@ const UserRow = ({ user, userRefetch }) => {
         <p>{email}</p>
       </td>
       <td>
-        <p>{role ? role : "Student"}</p>
+        <p>{role}</p>
       </td>
       <td>
         <div className="flex items-center">

@@ -30,6 +30,7 @@ const AddClass = () => {
       email,
       seats,
       price,
+      enroled: 0,
       status: "Pending",
     };
 

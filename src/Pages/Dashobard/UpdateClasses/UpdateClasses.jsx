@@ -31,6 +31,7 @@ const UpdateClasses = () => {
       email,
       seats,
       price,
+      enroled: 0,
       status: "Pending",
     };
 

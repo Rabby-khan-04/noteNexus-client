@@ -86,7 +86,7 @@ const Dropdown = ({ menuItem }) => {
                           ? "/dashboard/manage-user"
                           : userRole === "Instructor"
                           ? "/dashboard/my-classes"
-                          : "/dashboard/user-home"
+                          : "/dashboard/my-selected-class"
                       }
                       className="menu__item w-full"
                     >

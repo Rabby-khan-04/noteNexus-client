@@ -17,6 +17,7 @@ import AddClass from "../Pages/Dashobard/AddClass/AddClass";
 import InstructorsRoutes from "./InstructorsRoutes";
 import UpdateClasses from "../Pages/Dashobard/UpdateClasses/UpdateClasses";
 import axios from "axios";
+import MySelectedClass from "../Pages/Dashobard/MySelectedClass/MySelectedClass";
 
 export const routes = createBrowserRouter([
   {
@@ -101,6 +102,14 @@ export const routes = createBrowserRouter([
             <UpdateClasses />
           </InstructorsRoutes>
         ),
+      },
+      {
+        path: "my-selected-class",
+        element: <MySelectedClass />,
+      },
+      {
+        path: "enrolled-classes",
+        element: <MySelectedClass />,
       },
     ],
   },

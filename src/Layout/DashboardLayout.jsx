@@ -13,6 +13,8 @@ import {
   BsFillHddStackFill,
 } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
+import { MdOutlineBookmark } from "react-icons/md";
+import { HiSquare3Stack3D } from "react-icons/hi2";
 
 const DashboardLayout = () => {
   const [userRole] = useUserRole();
@@ -110,6 +112,51 @@ const DashboardLayout = () => {
     </>
   );
 
+  const studentMenu = (
+    <>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            (isActive
+              ? "dashboard__menu__active"
+              : "dashboard__menu__deactive") + " dashboard__menu__item"
+          }
+          to="/dashboard/my-selected-class"
+          data-tooltip-id="my-selected-class"
+          data-tooltip-content="My selected classes"
+        >
+          <BsFillGrid3X3GapFill />
+        </NavLink>
+        <ReactTooltip
+          id="my-selected-class"
+          place="left"
+          type="dark"
+          effect="solid"
+        />
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            (isActive
+              ? "dashboard__menu__active"
+              : "dashboard__menu__deactive") + " dashboard__menu__item"
+          }
+          to="/dashboard/enrolled-classes"
+          data-tooltip-id="my-enrolled-classes"
+          data-tooltip-content="My enrolled classes"
+        >
+          <HiSquare3Stack3D />
+        </NavLink>
+        <ReactTooltip
+          id="my-enrolled-classes"
+          place="left"
+          type="dark"
+          effect="solid"
+        />
+      </li>
+    </>
+  );
+
   return (
     <>
       <div className="flex">
@@ -124,6 +171,7 @@ const DashboardLayout = () => {
           <ul className="mt-8 dashboard__menu space-y-4">
             {userRole === "Admin" && adminMenu}
             {userRole === "Instructor" && instructorMenu}
+            {userRole === "Student" && studentMenu}
           </ul>
         </div>
         <div className="w-full py-24">
