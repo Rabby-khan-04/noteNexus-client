@@ -23,7 +23,6 @@ export const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use(
       (res) => res,
       async (err) => {
-        console.lgo(err.response);
         if (
           err?.response &&
           (err?.response?.status === 403 || err?.response?.status === 401)
@@ -33,7 +32,7 @@ export const useAxiosSecure = () => {
           Swal.fire({
             position: "center",
             icon: "error",
-            title: `${err?.message}`,
+            title: `Unauthorized Access`,
             showConfirmButton: false,
             timer: 1500,
           });

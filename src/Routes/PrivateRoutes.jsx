@@ -7,15 +7,13 @@ const PrivateRoutes = ({ children }) => {
   const { user, userLoading } = useAuth();
   const location = useLocation();
 
-  if (userLoading) {
-    return <Spinner />;
-  }
-
   if (user) {
     return children;
   }
-
-  return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
+  if (userLoading) {
+    return <Spinner />;
+  }
+  return <Navigate to="/login" state={{ from: location }}></Navigate>;
 };
 
 export default PrivateRoutes;

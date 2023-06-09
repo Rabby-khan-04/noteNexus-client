@@ -4,7 +4,7 @@ import DashboardTitle from "../../../Components/Dashboard/DashboardTitle";
 import UserRow from "./UserRow";
 
 const ManageUser = () => {
-  const [allUser, allUserLoading] = useUsers();
+  const [allUser, allUserLoading, userRefetch] = useUsers();
 
   console.log(allUser);
 
@@ -28,7 +28,11 @@ const ManageUser = () => {
               </thead>
               <tbody>
                 {allUser.map((user) => (
-                  <UserRow key={user._id} user={user} />
+                  <UserRow
+                    key={user._id}
+                    user={user}
+                    userRefetch={userRefetch}
+                  />
                 ))}
               </tbody>
             </table>

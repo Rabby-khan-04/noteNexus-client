@@ -11,6 +11,9 @@ import ManageClasses from "../Pages/Dashobard/ManageClasses/ManageClasses";
 import ManageUser from "../Pages/Dashobard/ManageUser/ManageUser";
 import PrivateRoutes from "./PrivateRoutes";
 import AdminRoutes from "./AdminRoutes";
+import UserHome from "../Pages/Dashobard/UserHome/UserHome";
+import MyClasses from "../Pages/Dashobard/MyClasses/MyClasses";
+import AddClass from "../Pages/Dashobard/AddClass/AddClass";
 
 export const routes = createBrowserRouter([
   {
@@ -31,7 +34,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "instructors",
-        element: <Instructors />,
+        element: (
+          <PrivateRoutes>
+            <Instructors />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "classes",
@@ -49,7 +56,7 @@ export const routes = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard/manage-classes",
+        path: "manage-classes",
         element: (
           <AdminRoutes>
             <ManageClasses />
@@ -57,12 +64,24 @@ export const routes = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/manage-user",
+        path: "manage-user",
         element: (
           <AdminRoutes>
             <ManageUser />
           </AdminRoutes>
         ),
+      },
+      {
+        path: "user-home",
+        element: <UserHome />,
+      },
+      {
+        path: "my-classes",
+        element: <MyClasses />,
+      },
+      {
+        path: "add-class",
+        element: <AddClass />,
       },
     ],
   },

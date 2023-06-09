@@ -7,6 +7,7 @@ import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
 import signupImg from "../../assets/Images/Login/login.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { saveUser } from "../../API/useUserRole";
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -21,7 +22,7 @@ const Signup = () => {
   const onSubmit = (data) => {
     // RegEx pattern
     const capital = /^(?=.*[A-Z])/;
-    const specialChar = /^(?=.*[@$!%*?&])/;
+    const specialChar = /^(?=.*[@$!%*?&^#])/;
 
     // Form Data
     const name = data.name;

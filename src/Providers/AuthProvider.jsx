@@ -52,6 +52,7 @@ const AuthProvider = ({ children }) => {
   // User Logout
   const userLogout = () => {
     setUserLoading(true);
+    setUser(null);
     return signOut(auth);
   };
 
@@ -59,7 +60,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
       if (currentUser?.email) {
         axios
           .post(`${import.meta.env.VITE_BASE_URL}/jwt`, {
@@ -68,11 +68,11 @@ const AuthProvider = ({ children }) => {
           .then((data) => {
             const token = data.data.token;
             localStorage.setItem("user-access-token", token);
+            setUserLoading(false);
           });
       } else {
         localStorage.removeItem("user-access-token");
       }
-      setUserLoading(false);
     });
     return () => unsubscribe();
   }, []);

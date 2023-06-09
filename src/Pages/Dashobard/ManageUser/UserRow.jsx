@@ -1,14 +1,29 @@
 import React from "react";
 import profileImg from "../../../assets/Images/Manage_user/profileImg.jpg";
+import { useAxiosSecure } from "../../../API/useAxiosSecure";
+import Swal from "sweetalert2";
 
-const UserRow = ({ user }) => {
+const UserRow = ({ user, userRefetch }) => {
   const { _id, email, image, name, role } = user;
+  const [axiosSecure] = useAxiosSecure();
 
   const handleUserRole = (e, id) => {
-    const selectedRole = e.target.value;
-    if (selectedRole === "Select User Role") {
+    const selectedRole = { role: e.target.value };
+    if (selectedRole.role === "Select User Role") {
       return;
     }
+    axiosSecure.put(`/set-role/${id}`, selectedRole).then((res) => {
+      if (res.data.upsertedCount > 0 || res.data.modifiedCount > 0) {
+        userRefetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully Updated The User",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   return (

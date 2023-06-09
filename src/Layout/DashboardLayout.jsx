@@ -11,6 +11,8 @@ import { FaUsers } from "react-icons/fa";
 
 const DashboardLayout = () => {
   const [userRole] = useUserRole();
+
+  // Admin Menu
   const adminMenu = (
     <>
       {/* <li>
@@ -66,11 +68,37 @@ const DashboardLayout = () => {
       </li>
     </>
   );
+
+  const instructorMenu = (
+    <>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            (isActive
+              ? "dashboard__menu__active"
+              : "dashboard__menu__deactive") + " dashboard__menu__item"
+          }
+          to="/dashboard/manage-user"
+          data-tooltip-id="manage-user"
+          data-tooltip-content="Manage User"
+        >
+          <FaUsers />
+        </NavLink>
+        <ReactTooltip
+          id="manage-user"
+          place="left"
+          type="dark"
+          effect="solid"
+        />
+      </li>
+    </>
+  );
+
   return (
     <>
       <div className="flex">
-        <div className="min-w-[80px] bg-accent h-screen">
-          <Link to="/">
+        <div className="min-w-[80px] bg-accent fixed h-full">
+          <Link to="/" className="block text-center">
             <img
               className="inline-block m-5 h-[30px] w-[30px]"
               src={favIcon}
@@ -79,12 +107,11 @@ const DashboardLayout = () => {
           </Link>
           <ul className="mt-8 dashboard__menu space-y-4">
             {userRole === "Admin" && adminMenu}
+            {userRole === "Instructor" && instructorMenu}
           </ul>
         </div>
-        <div>
-          <Navbar />
+        <div className="w-full py-24">
           <Outlet />
-          <Footer />
         </div>
       </div>
     </>

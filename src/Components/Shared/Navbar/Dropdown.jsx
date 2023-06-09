@@ -84,7 +84,9 @@ const Dropdown = ({ menuItem }) => {
                       to={
                         userRole === "Admin"
                           ? "/dashboard/manage-user"
-                          : "/dashboard"
+                          : userRole === "Instructor"
+                          ? "/dashboard/my-classes"
+                          : "/dashboard/user-home"
                       }
                       className="menu__item w-full"
                     >
