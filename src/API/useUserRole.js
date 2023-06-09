@@ -9,7 +9,6 @@ export const saveUser = async (user) => {
     name: user?.displayName,
     email: user?.email,
     image: user?.photoURL,
-    role: "Student",
   };
 
   const res = await axios.put(
@@ -21,21 +20,18 @@ export const saveUser = async (user) => {
 export const useUserRole = () => {
   const { user, userLoading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  const { data: userRole, isLoading: isRoleLoading } = useQuery(
-    ["userRole", user?.email],
-
-    async () => {
+  const { data: userRole, isLoading: isRoleLoading } = useQuery({
+    queryKey: ["userRole", user?.email],
+    enabled: !userLoading,
+    queryFn: async () => {
       try {
         const res = await axiosSecure.get(`/user-role/${user?.email}`);
-        return res.data.role;
+        return res?.data?.role;
       } catch (error) {
         // Handle the error here (e.g., show an error message or log it)
         throw new Error("Failed to fetch user role.");
       }
     },
-    {
-      enabled: !userLoading,
-    }
-  );
+  });
   return [userRole, isRoleLoading];
 };

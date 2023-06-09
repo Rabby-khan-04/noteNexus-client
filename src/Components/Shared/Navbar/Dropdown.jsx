@@ -5,10 +5,12 @@ import { useAuth } from "../../../API/useAuth";
 import { HiOutlineMenuAlt1, HiUserCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useUserRole } from "../../../API/useUserRole";
 
 const Dropdown = ({ menuItem }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, userLogout } = useAuth();
+  const [userRole] = useUserRole();
 
   // Logout handler
   const handleLogout = () => {
@@ -78,7 +80,14 @@ const Dropdown = ({ menuItem }) => {
               {user ? (
                 <>
                   <li>
-                    <Link to="/dashboard" className="menu__item w-full">
+                    <Link
+                      to={
+                        userRole === "Admin"
+                          ? "/dashboard/manage-user"
+                          : "/dashboard"
+                      }
+                      className="menu__item w-full"
+                    >
                       Dashboard
                     </Link>
                   </li>

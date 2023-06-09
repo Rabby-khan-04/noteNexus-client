@@ -25,3 +25,23 @@
   position: relative;
   z-index: 999;
 }
+
+.dashboard__menu li {
+  @apply text-center;
+}
+
+.dashboard__menu__item {
+  @apply btn border-none text-2xl;
+}
+
+.dashboard__menu__active {
+  @apply btn-primary text-accent;
+}
+
+.dashboard__menu__deactive {
+  @apply btn-accent text-white;
+}
+
+.db__container {
+  @apply max-w-7xl mx-auto;
+}

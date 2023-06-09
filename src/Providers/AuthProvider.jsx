@@ -69,6 +69,8 @@ const AuthProvider = ({ children }) => {
             const token = data.data.token;
             localStorage.setItem("user-access-token", token);
           });
+      } else {
+        localStorage.removeItem("user-access-token");
       }
       setUserLoading(false);
     });

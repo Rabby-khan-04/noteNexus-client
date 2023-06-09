@@ -6,7 +6,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 const AdminRoutes = ({ children }) => {
   const [userRole, isRoleLoading] = useUserRole();
-  const { user, userLoading } = useAuth();
+  const { user, userLoading, userLogout } = useAuth();
   const location = useLocation();
 
   console.log(userRole);
@@ -17,9 +17,10 @@ const AdminRoutes = ({ children }) => {
 
   if (user && userRole === "Admin") {
     return children;
+  } else {
+    userLogout();
+    return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
   }
-
-  return <Navigate to="/" state={{ from: location }} replace></Navigate>;
 };
 
 export default AdminRoutes;
