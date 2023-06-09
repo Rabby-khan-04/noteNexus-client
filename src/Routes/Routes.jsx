@@ -15,6 +15,8 @@ import UserHome from "../Pages/Dashobard/UserHome/UserHome";
 import MyClasses from "../Pages/Dashobard/MyClasses/MyClasses";
 import AddClass from "../Pages/Dashobard/AddClass/AddClass";
 import InstructorsRoutes from "./InstructorsRoutes";
+import UpdateClasses from "../Pages/Dashobard/UpdateClasses/UpdateClasses";
+import { useAxiosSecure } from "../API/useAxiosSecure";
 
 export const routes = createBrowserRouter([
   {
@@ -91,6 +93,11 @@ export const routes = createBrowserRouter([
             <AddClass />
           </InstructorsRoutes>
         ),
+      },
+      {
+        path: "update-class/:id",
+        element: <UpdateClasses />,
+        loader: ({ params }) => fetch(),
       },
     ],
   },
