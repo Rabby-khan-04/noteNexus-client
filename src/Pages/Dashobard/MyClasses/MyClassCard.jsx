@@ -9,9 +9,11 @@ import {
   MdVerified,
 } from "react-icons/md";
 import FeedBackModal from "../../../Components/Modal/FeedBackModal";
+import { useNavigate } from "react-router-dom";
 
 const MyClassCard = ({ item }) => {
   let [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+  const navigate = useNavigate();
   const { _id, image, name, price, seats, status, feedback, enroled } = item;
 
   // Open Feedback Modal
@@ -22,6 +24,11 @@ const MyClassCard = ({ item }) => {
   // Close Feedback Modal
   const closeFeedbackModal = () => {
     setIsFeedbackModalOpen(false);
+  };
+
+  // Go to class update route
+  const goToUpdateRoute = (id) => {
+    navigate(`/dashboard/update-class/${id}`);
   };
 
   return (
@@ -94,7 +101,10 @@ const MyClassCard = ({ item }) => {
               </button>
             )}
             {status === "Denied" && (
-              <button className="btn btn-block btn-secondary text-lg text-white">
+              <button
+                className="btn btn-block btn-secondary text-lg text-white"
+                onClick={() => goToUpdateRoute(_id)}
+              >
                 Update Now
               </button>
             )}

@@ -105,7 +105,7 @@ const AddClass = () => {
             />
 
             <input
-              className="btn btn-block btn-secondary"
+              className="btn btn-block btn-secondary text-lg text-white"
               type="submit"
               value="Add New Class"
             />
