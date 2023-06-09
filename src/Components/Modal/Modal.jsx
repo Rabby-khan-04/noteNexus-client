@@ -2,7 +2,13 @@ import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
-const Modal = ({ isModalOpen, closeModal, sendFeedback, id }) => {
+const Modal = ({ isModalOpen, closeModal, sendFeedback, id, setFeedback }) => {
+  // Set Feedback to the state
+
+  const handleSetFeedback = (e) => {
+    setFeedback(e.target.value);
+  };
+
   return (
     <>
       <Transition appear show={isModalOpen} as={Fragment}>
@@ -39,9 +45,10 @@ const Modal = ({ isModalOpen, closeModal, sendFeedback, id }) => {
                   </Dialog.Title>
                   <div className="mt-2">
                     <textarea
-                      placeholder="Description"
+                      placeholder="Feedback"
                       className="textarea textarea-bordered w-full h-36 text-base"
                       name="feedback"
+                      onChange={handleSetFeedback}
                     />
                   </div>
 

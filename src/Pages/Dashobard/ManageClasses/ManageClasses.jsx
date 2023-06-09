@@ -14,7 +14,11 @@ const ManageClasses = () => {
 
           <div className="grid grid-cols-3 gap-6 mt-6">
             {allClasses.map((item) => (
-              <ClassCard key={item._id} item={item} />
+              <ClassCard
+                key={item._id}
+                item={item}
+                refetchClasses={refetchClasses}
+              />
             ))}
           </div>
         </div>

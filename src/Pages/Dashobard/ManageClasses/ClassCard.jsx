@@ -9,10 +9,14 @@ import {
 import { FaEnvelope, FaUserGraduate } from "react-icons/fa";
 import IconBox from "../../../Components/IconBox";
 import Modal from "../../../Components/Modal/Modal";
+import Swal from "sweetalert2";
+import { useAxiosSecure } from "../../../API/useAxiosSecure";
 
-const ClassCard = ({ item }) => {
+const ClassCard = ({ item, refetchClasses }) => {
   let [isModalOpen, setIsModalOpen] = useState(false);
   const { _id, email, image, instructor, name, price, seats, status } = item;
+  const [feedback, setFeedback] = useState("");
+  const [axiosSecure] = useAxiosSecure();
 
   // Close Modal
   const closeModal = () => {
@@ -25,7 +29,49 @@ const ClassCard = ({ item }) => {
   };
 
   // handle Denied Function
-  const sendFeedback = (id) => {};
+  const sendFeedback = (id) => {
+    if (!feedback) {
+      setIsModalOpen(false);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: `Feedback Field Is Required`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+    axiosSecure.put(`/class-deny/${id}`, { feedback }).then((res) => {
+      if (res.data.upsertedId || res.data.modifiedCount) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `Class Denied`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetchClasses();
+        setIsModalOpen(false);
+      }
+    });
+  };
+
+  // Handle Approve Class
+  const handleApprove = (id) => {
+    axiosSecure.put(`/class-approve/${id}`).then((res) => {
+      if (res.data.upsertedId || res.data.modifiedCount) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Class Approved`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetchClasses();
+        setIsModalOpen(false);
+      }
+    });
+  };
 
   return (
     <>
@@ -94,13 +140,14 @@ const ClassCard = ({ item }) => {
           </div>
           <div className=" space-y-2">
             <button
-              disabled={status === ""}
+              disabled={status === "Approve" || status === "Denied"}
               className="btn btn-block btn-accent text-lg text-white"
+              onClick={() => handleApprove(_id)}
             >
               Approve
             </button>
             <button
-              disabled={status === ""}
+              disabled={status === "Approve" || status === "Denied"}
               className="btn btn-block btn-error text-lg text-white"
               onClick={openModal}
             >
@@ -113,6 +160,7 @@ const ClassCard = ({ item }) => {
         isModalOpen={isModalOpen}
         sendFeedback={sendFeedback}
         closeModal={closeModal}
+        setFeedback={setFeedback}
         id={_id}
       />
     </>
