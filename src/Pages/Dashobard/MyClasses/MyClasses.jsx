@@ -1,20 +1,21 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import DashboardTitle from "../../../Components/Dashboard/DashboardTitle";
+import { useMyclasses } from "../../../API/useMyClasses";
+import MyClassCard from "./MyClassCard";
 
 const MyClasses = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+  const [myClasses, isClassesLoading, classesRefetch] = useMyclasses();
+
   return (
     <section>
       <div className="db__container">
         <DashboardTitle title="My Classes" />
-        <div className="grid grid-cols-3 gap-6 mt-6"></div>
+        <div className="grid grid-cols-3 gap-6 mt-6">
+          {myClasses.map((item) => (
+            <MyClassCard item={item} key={item._id} />
+          ))}
+        </div>
       </div>
     </section>
   );
