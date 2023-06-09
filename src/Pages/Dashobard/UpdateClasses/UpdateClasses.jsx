@@ -33,6 +33,18 @@ const UpdateClasses = () => {
       price,
       status: "Pending",
     };
+
+    axiosSecure.put(`/class/${_id}`, classInfo).then((res) => {
+      if (res.data.modifiedCount > 0 || res.data.upsertedId) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Class Updated Successfully`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   return (
