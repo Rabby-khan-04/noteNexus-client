@@ -6,7 +6,12 @@ import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import favIcon from "../../public/favicon.png";
 import { useUserRole } from "../API/useUserRole";
-import { BsFillGrid3X3GapFill, BsFillHddStackFill } from "react-icons/bs";
+import {
+  BsCollectionPlay,
+  BsDatabaseFillAdd,
+  BsFillGrid3X3GapFill,
+  BsFillHddStackFill,
+} from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 
 const DashboardLayout = () => {
@@ -78,18 +83,29 @@ const DashboardLayout = () => {
               ? "dashboard__menu__active"
               : "dashboard__menu__deactive") + " dashboard__menu__item"
           }
-          to="/dashboard/manage-user"
-          data-tooltip-id="manage-user"
-          data-tooltip-content="Manage User"
+          to="/dashboard/my-classes"
+          data-tooltip-id="my-classes"
+          data-tooltip-content="My classes"
         >
-          <FaUsers />
+          <BsCollectionPlay />
         </NavLink>
-        <ReactTooltip
-          id="manage-user"
-          place="left"
-          type="dark"
-          effect="solid"
-        />
+        <ReactTooltip id="my-classes" place="left" type="dark" effect="solid" />
+      </li>
+
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            (isActive
+              ? "dashboard__menu__active"
+              : "dashboard__menu__deactive") + " dashboard__menu__item"
+          }
+          to="/dashboard/add-class"
+          data-tooltip-id="add-class"
+          data-tooltip-content="Add Class"
+        >
+          <BsDatabaseFillAdd />
+        </NavLink>
+        <ReactTooltip id="add-class" place="left" type="dark" effect="solid" />
       </li>
     </>
   );

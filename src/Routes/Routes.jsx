@@ -14,6 +14,7 @@ import AdminRoutes from "./AdminRoutes";
 import UserHome from "../Pages/Dashobard/UserHome/UserHome";
 import MyClasses from "../Pages/Dashobard/MyClasses/MyClasses";
 import AddClass from "../Pages/Dashobard/AddClass/AddClass";
+import InstructorsRoutes from "./InstructorsRoutes";
 
 export const routes = createBrowserRouter([
   {
@@ -77,11 +78,19 @@ export const routes = createBrowserRouter([
       },
       {
         path: "my-classes",
-        element: <MyClasses />,
+        element: (
+          <InstructorsRoutes>
+            <MyClasses />
+          </InstructorsRoutes>
+        ),
       },
       {
         path: "add-class",
-        element: <AddClass />,
+        element: (
+          <InstructorsRoutes>
+            <AddClass />
+          </InstructorsRoutes>
+        ),
       },
     ],
   },
