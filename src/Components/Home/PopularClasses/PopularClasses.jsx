@@ -7,9 +7,11 @@ const PopularClasses = () => {
   const [popularClass, setPopularClass] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/popular-classes").then((res) => {
-      setPopularClass(res.data);
-    });
+    axios
+      .get(`${import.meta.env.VITE_BASE_URL}/popular-classes`)
+      .then((res) => {
+        setPopularClass(res.data);
+      });
   }, []);
 
   return (
