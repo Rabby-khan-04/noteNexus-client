@@ -2,9 +2,29 @@ import React from "react";
 import { FaEnvelope, FaUserGraduate } from "react-icons/fa";
 import { MdGroups2, MdOutlinePriceChange } from "react-icons/md";
 import IconBox from "../../../Components/IconBox";
+import { useAxiosSecure } from "../../../API/useAxiosSecure";
+import Swal from "sweetalert2";
 
-const MyClassCard = ({ item }) => {
+const MyClassCard = ({ item, classesRefetch }) => {
   const { _id, image, name, price, email, instructor, classId } = item;
+  const [axiosSecure] = useAxiosSecure();
+
+  // Handle Delete
+  const handleDeleteClass = (id) => {
+    axiosSecure.delete(`/delete-class/${id}`).then((res) => {
+      if (res.data.deletedCount > 0) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Class Deleted Successfully`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        classesRefetch();
+      }
+    });
+  };
+
   return (
     <div className="p-3 border border-gray-300 rounded-lg group overflow-hidden">
       <div className="overflow-hidden rounded-lg">
@@ -38,7 +58,7 @@ const MyClassCard = ({ item }) => {
         </div>
         <div className=" space-y-2">
           <button
-            onClick={() => null}
+            onClick={() => handleDeleteClass(_id)}
             className="btn btn-block btn-secondary text-lg text-white"
           >
             Delete Class

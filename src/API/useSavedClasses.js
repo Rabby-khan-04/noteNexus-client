@@ -6,7 +6,11 @@ export const useSaveClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const { user, userLoading } = useAuth();
 
-  const { data: savedClasses = [], isLoading: classesLoading } = useQuery({
+  const {
+    data: savedClasses = [],
+    isLoading: classesLoading,
+    refetch: classesRefetch,
+  } = useQuery({
     queryKey: ["saveClasses", user?.email],
     enabled: !userLoading,
     queryFn: async () => {
@@ -15,5 +19,5 @@ export const useSaveClasses = () => {
     },
   });
 
-  return [savedClasses, classesLoading];
+  return [savedClasses, classesLoading, classesRefetch];
 };
