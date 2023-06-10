@@ -13,7 +13,7 @@ import {
   BsFillHddStackFill,
 } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
-import { MdOutlineBookmark } from "react-icons/md";
+import { MdOutlineBookmark, MdPayment } from "react-icons/md";
 import { HiSquare3Stack3D } from "react-icons/hi2";
 
 const DashboardLayout = () => {
@@ -149,6 +149,26 @@ const DashboardLayout = () => {
         </NavLink>
         <ReactTooltip
           id="my-enrolled-classes"
+          place="left"
+          type="dark"
+          effect="solid"
+        />
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            (isActive
+              ? "dashboard__menu__active"
+              : "dashboard__menu__deactive") + " dashboard__menu__item"
+          }
+          to="/dashboard/payment-histry"
+          data-tooltip-id="payment-histry"
+          data-tooltip-content="Payment Histry"
+        >
+          <MdPayment />
+        </NavLink>
+        <ReactTooltip
+          id="payment-histry"
           place="left"
           type="dark"
           effect="solid"

@@ -20,6 +20,7 @@ import axios from "axios";
 import MySelectedClass from "../Pages/Dashobard/MySelectedClass/MySelectedClass";
 import EnrolledClasses from "../Pages/Dashobard/EnrolledClasses/EnrolledClasses";
 import Payment from "../Pages/Dashobard/Payment/Payment";
+import PaymentHistry from "../Pages/Dashobard/PaymentHistry/PaymentHistry";
 
 export const routes = createBrowserRouter([
   {
@@ -112,6 +113,10 @@ export const routes = createBrowserRouter([
       {
         path: "payment/:id",
         element: <Payment />,
+      },
+      {
+        path: "payment-histry",
+        element: <PaymentHistry />,
       },
     ],
   },

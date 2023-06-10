@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import IconBox from "../../IconBox";
 import { FaEnvelope, FaUserGraduate } from "react-icons/fa";
 import { MdGroups2, MdOutlinePriceChange } from "react-icons/md";
@@ -14,9 +14,10 @@ const PopularClassCard = ({ item }) => {
   const navigate = useNavigate();
   const [userRole, isRoleLoading] = useUserRole();
   const { _id, name, email, image, instructor, seats, enroled, price } = item;
+  const [isExist, setIsExist] = useState(false);
 
   // Handle Save Class
-  const handleSaveClass = (classData) => {
+  const handleSaveClass = async (classData) => {
     if (!user) {
       Swal.fire({
         text: "You have to login to book class!",
@@ -33,35 +34,52 @@ const PopularClassCard = ({ item }) => {
       return;
     }
 
-    const bookinDetails = {
-      classId: classData?._id,
-      name: classData?.name,
-      price: classData?.price,
-      studentEmail: user?.email,
-      image: classData?.image,
-      instructor: classData?.instructor,
-      email: classData?.email,
-    };
+    const checkBooking = { id: classData._id, email: user?.email };
 
-    axiosSecure.post("/select-class", bookinDetails).then((res) => {
-      if (res.data.exist) {
-        Swal.fire({
-          position: "center",
-          icon: "warning",
-          title: `${res.data.message}`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else if (res.data.insertedId) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: `Class Saved Successfully`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
+    const res = await axiosSecure.get("/cheking-histry", {
+      params: checkBooking,
     });
+
+    if (res.data.exist) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: `Already enrolled In this class`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    } else {
+      const bookinDetails = {
+        classId: classData?._id,
+        name: classData?.name,
+        price: classData?.price,
+        studentEmail: user?.email,
+        image: classData?.image,
+        instructor: classData?.instructor,
+        email: classData?.email,
+      };
+
+      axiosSecure.post("/select-class", bookinDetails).then((res) => {
+        if (res.data.exist) {
+          Swal.fire({
+            position: "center",
+            icon: "warning",
+            title: `${res?.data?.message}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `Class Saved Successfully`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+    }
   };
 
   return (

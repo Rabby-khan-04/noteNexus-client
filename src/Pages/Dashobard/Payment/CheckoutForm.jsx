@@ -64,7 +64,7 @@ const CheckoutForm = ({ clientSecret, classInfo }) => {
       });
       axiosSecure.delete(`/delete-class/${classInfo._id}`);
       // classesRefetch();
-      navigate("/dashboard/my-selected-class");
+      navigate("/dashboard/payment-histry");
     } else {
       Swal.fire({
         position: "center",
