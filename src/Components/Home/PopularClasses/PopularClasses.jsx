@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import PopularClassCard from "./PopularClassCard";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const PopularClasses = () => {
   const [popularClass, setPopularClass] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BASE_URL}/popular-classes`)
-      .then((res) => {
-        setPopularClass(res.data);
-      });
+    axios.get(`${import.meta.env.VITE_BASE_URL}/all-classes`).then((res) => {
+      setPopularClass(res.data);
+    });
   }, []);
 
   return (
@@ -26,6 +25,15 @@ const PopularClasses = () => {
           {popularClass.map((item) => (
             <PopularClassCard key={item._id} item={item} />
           ))}
+        </div>
+
+        <div className="text-center mt-10">
+          <Link
+            to="/classes"
+            className="btn btn-secondary text-xl font-nunito text-white"
+          >
+            View All
+          </Link>
         </div>
       </div>
     </section>
