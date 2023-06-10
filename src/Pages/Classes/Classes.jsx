@@ -1,7 +1,12 @@
 import React from "react";
+import ClassesBanner from "../../Components/Classes/ClassesBanner";
 
 const Classes = () => {
-  return <div></div>;
+  return (
+    <>
+      <ClassesBanner />
+    </>
+  );
 };
 
 export default Classes;
