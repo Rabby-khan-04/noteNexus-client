@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import PopularClassCard from "./PopularClassCard";
-import { usePopularClasses } from "../../../API/usePopularClasses";
-import Spinner from "../../Spinner/Spinner";
+import axios from "axios";
 
 const PopularClasses = () => {
-  const [popularClass, isPopularClassLoading, popularClassesRefetch] =
-    usePopularClasses();
+  const [popularClass, setPopularClass] = useState([]);
 
-  if (isPopularClassLoading) {
-    return <Spinner />;
-  }
+  useEffect(() => {
+    axios.get("http://localhost:5000/popular-classes").then((res) => {
+      setPopularClass(res.data);
+    });
+  }, []);
 
   return (
     <section className="py-16">
