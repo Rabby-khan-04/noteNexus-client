@@ -1,7 +1,12 @@
 import React from "react";
+import Title from "../../../Components/Shared/Title/Title";
 
 const EnrolledClasses = () => {
-  return <div>EnrolledClasses</div>;
+  return (
+    <>
+      <Title title="Enroled Classes" />
+    </>
+  );
 };
 
 export default EnrolledClasses;

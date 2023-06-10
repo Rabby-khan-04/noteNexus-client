@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import DashboardTitle from "../../../Components/Dashboard/DashboardTitle";
 import { useAllClasses } from "../../../API/UseAllClasses";
 import ClassCard from "./ClassCard";
+import Title from "../../../Components/Shared/Title/Title";
 
 const ManageClasses = () => {
   const [allClasses, isClassLoading, refetchClasses] = useAllClasses();
 
   return (
     <>
+      <Title title="Manage Classes" />
       <section>
         <div className="db__container">
           <DashboardTitle title="Manage Classes" />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import InstructorsBanner from "../../Components/Instructors/InstructorsBanner";
 import axios from "axios";
 import InstructorCard from "../../Components/Home/PopularInstructors/InstructorCard";
+import Title from "../../Components/Shared/Title/Title";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
@@ -16,6 +17,7 @@ const Instructors = () => {
 
   return (
     <>
+      <Title title="Instructors" />
       <InstructorsBanner />
       <section className="py-16">
         <div className="container">

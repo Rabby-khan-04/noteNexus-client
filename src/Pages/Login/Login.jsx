@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
 import Swal from "sweetalert2";
 import { useAuth } from "../../API/useAuth";
+import Title from "../../Components/Shared/Title/Title";
 
 const Login = () => {
   const { userSignin } = useAuth();
@@ -47,60 +48,63 @@ const Login = () => {
   };
 
   return (
-    <section className="h-[calc(100vh-72px)] flex justify-center items-center">
-      <div className="container">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 py-12 px-10 shadow-md rounded-lg">
-          <div>
-            <img src={loginImg} className="w-full" alt="login image" />
-            <div className="text-center">
-              <Link
-                to="/signup"
-                className="text-base font-medium underline text-accent"
-              >
-                Create An Account
-              </Link>
+    <>
+      <Title title="Login" />
+      <section className="h-[calc(100vh-72px)] flex justify-center items-center">
+        <div className="container">
+          <div className="max-w-4xl mx-auto grid grid-cols-2 py-12 px-10 shadow-md rounded-lg">
+            <div>
+              <img src={loginImg} className="w-full" alt="login image" />
+              <div className="text-center">
+                <Link
+                  to="/signup"
+                  className="text-base font-medium underline text-accent"
+                >
+                  Create An Account
+                </Link>
+              </div>
+            </div>
+            <div className="self-center">
+              <h2 className="text-4xl font-semibold text-accent mb-6 uppercase">
+                Login
+              </h2>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div className="input__wrapper">
+                  <label htmlFor="email" className="px-2">
+                    <FaUserAlt className="text-xl" />
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="input__field"
+                    placeholder="Email"
+                    {...register("email", { required: true })}
+                  />
+                </div>
+                <div className="input__wrapper">
+                  <label htmlFor="password" className="px-2">
+                    <RiLockPasswordFill className="text-xl" />
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    className="input__field"
+                    placeholder="Password"
+                    {...register("password", { required: true })}
+                  />
+                </div>
+                <input
+                  className="btn btn-block btn-accent text-lg text-white"
+                  type="submit"
+                  value="Login"
+                />
+              </form>
+              <SocialLogin />
             </div>
           </div>
-          <div className="self-center">
-            <h2 className="text-4xl font-semibold text-accent mb-6 uppercase">
-              Login
-            </h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="input__wrapper">
-                <label htmlFor="email" className="px-2">
-                  <FaUserAlt className="text-xl" />
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="input__field"
-                  placeholder="Email"
-                  {...register("email", { required: true })}
-                />
-              </div>
-              <div className="input__wrapper">
-                <label htmlFor="password" className="px-2">
-                  <RiLockPasswordFill className="text-xl" />
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="input__field"
-                  placeholder="Password"
-                  {...register("password", { required: true })}
-                />
-              </div>
-              <input
-                className="btn btn-block btn-accent text-lg text-white"
-                type="submit"
-                value="Login"
-              />
-            </form>
-            <SocialLogin />
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
