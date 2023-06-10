@@ -7,6 +7,7 @@ import Title from "../../../Components/Shared/Title/Title";
 
 const MySelectedClass = () => {
   const [savedClasses, classesLoading, classesRefetch] = useSaveClasses();
+  console.log(savedClasses);
   return (
     <>
       <Title title="My Selected Classes" />

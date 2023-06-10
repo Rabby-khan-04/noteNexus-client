@@ -4,10 +4,14 @@ import { MdGroups2, MdOutlinePriceChange } from "react-icons/md";
 import IconBox from "../../../Components/IconBox";
 import { useAxiosSecure } from "../../../API/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const MyClassCard = ({ item, classesRefetch }) => {
   const { _id, image, name, price, email, instructor, classId } = item;
   const [axiosSecure] = useAxiosSecure();
+  const navigate = useNavigate();
+
+  console.log(item);
 
   // Handle Delete
   const handleDeleteClass = (id) => {
@@ -23,6 +27,11 @@ const MyClassCard = ({ item, classesRefetch }) => {
         classesRefetch();
       }
     });
+  };
+
+  // Goto payment route
+  const handlePaymentRoute = (id) => {
+    navigate(`/dashboard/payment/${id}`);
   };
 
   return (
@@ -64,7 +73,7 @@ const MyClassCard = ({ item, classesRefetch }) => {
             Delete Class
           </button>
           <button
-            onClick={() => null}
+            onClick={() => handlePaymentRoute(_id)}
             className="btn btn-block btn-accent text-lg text-white"
           >
             Pay Now

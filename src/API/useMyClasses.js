@@ -14,7 +14,7 @@ export const useMyclasses = () => {
     enabled: !userLoading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/my-classes/${user?.email}`);
-      return res.data;
+      return res?.data;
     },
   });
   return [myClasses, isClassesLoading, classesRefetch];

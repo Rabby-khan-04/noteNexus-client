@@ -19,6 +19,7 @@ import UpdateClasses from "../Pages/Dashobard/UpdateClasses/UpdateClasses";
 import axios from "axios";
 import MySelectedClass from "../Pages/Dashobard/MySelectedClass/MySelectedClass";
 import EnrolledClasses from "../Pages/Dashobard/EnrolledClasses/EnrolledClasses";
+import Payment from "../Pages/Dashobard/Payment/Payment";
 
 export const routes = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ export const routes = createBrowserRouter([
       {
         path: "enrolled-classes",
         element: <EnrolledClasses />,
+      },
+      {
+        path: "payment/:id",
+        element: <Payment />,
       },
     ],
   },
