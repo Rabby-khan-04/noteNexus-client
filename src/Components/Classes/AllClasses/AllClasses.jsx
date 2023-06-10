@@ -6,11 +6,9 @@ const AllClasses = () => {
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BASE_URL}/all-classes?limit=6`)
-      .then((res) => {
-        setClasses(res.data);
-      });
+    axios.get(`${import.meta.env.VITE_BASE_URL}/all-classes`).then((res) => {
+      setClasses(res.data);
+    });
   }, []);
   return (
     <section>
