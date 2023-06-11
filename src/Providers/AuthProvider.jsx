@@ -30,7 +30,6 @@ const AuthProvider = ({ children }) => {
 
   // Update Existing User
   const updateUserProfile = (name, image) => {
-    setUserLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: image,
@@ -74,7 +73,9 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem("user-access-token");
       }
     });
-    return () => unsubscribe();
+    return () => {
+      return unsubscribe();
+    };
   }, []);
 
   // All Auth Operations

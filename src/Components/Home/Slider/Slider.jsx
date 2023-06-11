@@ -43,7 +43,12 @@ const Slider = () => {
   ];
 
   return (
-    <Carousel autoPlay={true} infiniteLoop={true} showStatus={false}>
+    <Carousel
+      autoPlay={true}
+      infiniteLoop={true}
+      showStatus={false}
+      showThumbs={false}
+    >
       {slideData.map((item, index) => (
         <Slide key={index} item={item} />
       ))}

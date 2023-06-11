@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import axios from "axios";
 import InstructorCard from "./InstructorCard";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../../Providers/ThemeProvider";
 
 const PopularInstructors = () => {
   const [instructors, setInstructors] = useState([]);
+  const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     axios
@@ -17,7 +19,7 @@ const PopularInstructors = () => {
 
   console.log(instructors);
   return (
-    <section className="py-16 bg-white">
+    <section className={`py-16 ${darkMode ? "text-white bg-black" : ""}`}>
       <div className="container">
         <SectionTitle
           title="Meet Our Teachers"
@@ -33,7 +35,9 @@ const PopularInstructors = () => {
         <div className="text-center mt-10">
           <Link
             to="/instructors"
-            className="btn btn-secondary text-xl text-white"
+            className={`btn text-xl font-nunito ${
+              darkMode ? "btn-primary text-black" : "text-white btn-secondary "
+            }`}
           >
             View All
           </Link>

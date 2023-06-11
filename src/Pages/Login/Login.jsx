@@ -99,6 +99,7 @@ const Login = () => {
                     {...register("password", { required: true })}
                   />
                   <button
+                    type="button"
                     onClick={handleShowPassword}
                     className="text-xl text-accent py-2 px-3"
                   >

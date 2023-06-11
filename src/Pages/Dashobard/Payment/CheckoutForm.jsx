@@ -52,6 +52,7 @@ const CheckoutForm = ({ clientSecret, classInfo }) => {
     if (paymentIntent && paymentIntent?.status === "succeeded") {
       const transactionId = paymentIntent.id;
       classInfo.transactionId = transactionId;
+      classInfo.date = new Date();
       Swal.fire({
         position: "center",
         icon: "success",

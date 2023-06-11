@@ -175,6 +175,7 @@ const Signup = () => {
                     {...register("password", { required: true })}
                   />
                   <button
+                    type="button"
                     onClick={handleShowPassword}
                     className="text-xl text-accent py-2 px-3"
                   >
@@ -193,6 +194,7 @@ const Signup = () => {
                     {...register("confirmPassword", { required: true })}
                   />
                   <button
+                    type="button"
                     onClick={handleShowConfirmPassword}
                     className="text-xl text-accent py-2 px-3"
                   >

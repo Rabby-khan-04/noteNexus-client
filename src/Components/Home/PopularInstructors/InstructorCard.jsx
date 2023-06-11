@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   FaEnvelope,
   FaFacebook,
@@ -7,9 +7,11 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import IconBox from "../../IconBox";
+import { ThemeContext } from "../../../Providers/ThemeProvider";
 
 const InstructorCard = ({ instructor }) => {
   const { _id, email, image, name, role } = instructor;
+  const { darkMode } = useContext(ThemeContext);
   return (
     <div className="group flex-col flex items-center cursor-pointer">
       <div className="rounded-full w-[240px] h-[240px] relative">
@@ -22,15 +24,37 @@ const InstructorCard = ({ instructor }) => {
       </div>
 
       <div className="text-center font-nunito mt-4 w-full">
-        <h2 className="text-2xl text-accent font-extrabold">{name}</h2>
+        <h2
+          className={`text-2xl ${
+            darkMode ? "text-primary" : "text-accent"
+          } font-extrabold`}
+        >
+          {name}
+        </h2>
         <div className="flex justify-center mb-1">
           <IconBox
-            Icon={<FaEnvelope className="text-lg text-secondary" />}
+            Icon={
+              <FaEnvelope
+                className={`${
+                  darkMode ? "text-primary" : "text-secondary"
+                } text-xl`}
+              />
+            }
             title={email}
           />
         </div>
-        <p className="text-secondary font-bold text-xl mb-2">{role}</p>
-        <div className="text-accent flex justify-center gap-3">
+        <p
+          className={`${
+            darkMode ? "text-primary" : "text-secondary"
+          } font-bold text-xl mb-2`}
+        >
+          {role}
+        </p>
+        <div
+          className={`${
+            darkMode ? "text-primary" : "text-accent"
+          } flex justify-center gap-3`}
+        >
           <FaFacebook />
           <FaInstagram />
           <FaTwitter />

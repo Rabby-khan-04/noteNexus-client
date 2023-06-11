@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import Dropdown from "./Dropdown";
 import { NavLink } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
+import { ThemeContext } from "../../../Providers/ThemeProvider";
 
 const Navbar = () => {
+  const { darkMode } = useContext(ThemeContext);
   // Menu Items
   const menuItem = (
     <>
@@ -42,12 +45,15 @@ const Navbar = () => {
   );
 
   return (
-    <header>
+    <header className={`${darkMode ? "bg-black" : ""}`}>
       <div className="container">
         <nav className="flex flex-row justify-between items-center py-2">
           <Logo />
           <Menu menuItem={menuItem} />
-          <Dropdown menuItem={menuItem} />
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <Dropdown menuItem={menuItem} />
+          </div>
         </nav>
       </div>
     </header>

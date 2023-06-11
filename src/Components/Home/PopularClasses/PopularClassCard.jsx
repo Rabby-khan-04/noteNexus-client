@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import IconBox from "../../IconBox";
 import { FaEnvelope, FaUserGraduate } from "react-icons/fa";
 import { MdGroups2, MdOutlinePriceChange } from "react-icons/md";
@@ -7,8 +7,10 @@ import { useAuth } from "../../../API/useAuth";
 import { useUserRole } from "../../../API/useUserRole";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../../../Providers/ThemeProvider";
 
 const PopularClassCard = ({ item }) => {
+  const { darkMode } = useContext(ThemeContext);
   const [axiosSecure] = useAxiosSecure();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -92,7 +94,11 @@ const PopularClassCard = ({ item }) => {
   };
 
   return (
-    <div className="p-3 border border-gray-300 rounded-lg group overflow-hidden">
+    <div
+      className={`p-3 border ${
+        darkMode ? "border-primary" : "border-gray-300 "
+      } rounded-lg group overflow-hidden ${seats <= 0 ? "bg-red-400" : ""}`}
+    >
       <div className="overflow-hidden rounded-lg">
         <img
           src={image}
@@ -102,26 +108,57 @@ const PopularClassCard = ({ item }) => {
       </div>
       <div className="pt-4 space-y-4">
         <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-bold text-accent font-nunito">
-            <span className="text-secondary">{name}</span> <span>Class</span>
+          <h2
+            className={`text-3xl font-bold ${
+              darkMode ? "text-white" : "text-accent"
+            } font-nunito`}
+          >
+            <span className={`${darkMode ? "text-primary" : "text-secondary"}`}>
+              {name}
+            </span>{" "}
+            <span>Class</span>
           </h2>
         </div>
         <div>
           <IconBox
-            Icon={<FaUserGraduate className="text-secondary text-xl" />}
+            Icon={
+              <FaUserGraduate
+                className={`${
+                  darkMode ? "text-primary" : "text-secondary"
+                } text-xl`}
+              />
+            }
             title={instructor}
           />
           <IconBox
-            Icon={<FaEnvelope className="text-secondary text-xl" />}
+            Icon={
+              <FaEnvelope
+                className={`${
+                  darkMode ? "text-primary" : "text-secondary"
+                } text-xl`}
+              />
+            }
             title={email}
           />
           <div className="flex items-center gap-3">
             <IconBox
-              Icon={<MdGroups2 className="text-secondary text-xl" />}
+              Icon={
+                <MdGroups2
+                  className={`${
+                    darkMode ? "text-primary" : "text-secondary"
+                  } text-xl`}
+                />
+              }
               title={seats}
             />
             <IconBox
-              Icon={<MdOutlinePriceChange className="text-secondary text-xl" />}
+              Icon={
+                <MdOutlinePriceChange
+                  className={`${
+                    darkMode ? "text-primary" : "text-secondary"
+                  } text-xl`}
+                />
+              }
               title={"$" + price}
             />
           </div>
@@ -132,7 +169,9 @@ const PopularClassCard = ({ item }) => {
               seats === 0 || userRole === "Admin" || userRole === "Instructor"
             }
             onClick={() => handleSaveClass(item)}
-            className="btn btn-block btn-accent text-lg text-white"
+            className={`btn btn-block text-lg ${
+              darkMode ? "btn-primary text-accent" : "text-white btn-accent"
+            }`}
           >
             Take Lesson
           </button>

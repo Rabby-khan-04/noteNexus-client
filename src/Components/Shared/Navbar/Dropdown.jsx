@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useAuth } from "../../../API/useAuth";
@@ -6,11 +6,13 @@ import { HiOutlineMenuAlt1, HiUserCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useUserRole } from "../../../API/useUserRole";
+import { ThemeContext } from "../../../Providers/ThemeProvider";
 
 const Dropdown = ({ menuItem }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, userLogout } = useAuth();
   const [userRole] = useUserRole();
+  const { darkMode } = useContext(ThemeContext);
 
   // Logout handler
   const handleLogout = () => {
@@ -40,12 +42,16 @@ const Dropdown = ({ menuItem }) => {
       <div
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-center w-full px-2 py-1 gap-2 border border-gray-500 rounded-full cursor-pointer"
+        className={`inline-flex items-center justify-center w-full px-2 py-1 gap-2 border ${
+          darkMode ? "border-white" : "border-gray-500"
+        }  rounded-full cursor-pointer`}
         id="menu-button"
         aria-expanded={isOpen ? "true" : "false"}
         aria-haspopup="true"
       >
-        <HiOutlineMenuAlt1 className="text-gray-500 text-3xl" />
+        <HiOutlineMenuAlt1
+          className={`text-3xl ${darkMode ? "text-white" : "text-gray-500"}`}
+        />
 
         {user?.photoURL ? (
           <img

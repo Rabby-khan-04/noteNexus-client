@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../Components/Shared/Navbar/Navbar";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import Footer from "../Components/Shared/Footer/Footer";
@@ -15,9 +15,13 @@ import {
 import { FaUsers } from "react-icons/fa";
 import { MdOutlineBookmark, MdPayment } from "react-icons/md";
 import { HiSquare3Stack3D } from "react-icons/hi2";
+import { ThemeContext } from "../Providers/ThemeProvider";
 
 const DashboardLayout = () => {
   const [userRole] = useUserRole();
+  const { setDarkmode } = useContext(ThemeContext);
+
+  setDarkmode(false);
 
   // Admin Menu
   const adminMenu = (
