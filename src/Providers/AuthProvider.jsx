@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
 
   // Update Existing User
   const updateUserProfile = (name, image) => {
+    setUserLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: image,
@@ -58,7 +59,6 @@ const AuthProvider = ({ children }) => {
   // Track user
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
       if (currentUser?.email) {
         axios
           .post(`${import.meta.env.VITE_BASE_URL}/jwt`, {
@@ -72,6 +72,7 @@ const AuthProvider = ({ children }) => {
       } else {
         localStorage.removeItem("user-access-token");
       }
+      setUser(currentUser);
     });
     return () => {
       return unsubscribe();

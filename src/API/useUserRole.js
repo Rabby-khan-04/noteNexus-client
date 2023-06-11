@@ -18,8 +18,8 @@ export const saveUser = async (user) => {
 };
 
 export const useUserRole = () => {
-  const { user, userLoading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
+  const { user, userLoading } = useAuth();
   const { data: userRole, isLoading: isRoleLoading } = useQuery({
     queryKey: ["userRole", user?.email],
     enabled: !userLoading,

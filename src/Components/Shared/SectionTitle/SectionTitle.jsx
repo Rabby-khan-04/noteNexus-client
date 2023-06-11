@@ -9,7 +9,7 @@ const SectionTitle = ({ title, subTitle, description }) => {
   const customAnimation = keyframes`
   from {
     opacity: 0;
-    transform: translateY(100px);
+    transform: translateY(80px);
   }
 
   to {
@@ -19,7 +19,7 @@ const SectionTitle = ({ title, subTitle, description }) => {
 `;
 
   return (
-    <Reveal keyframes={customAnimation}>
+    <Reveal keyframes={customAnimation} duration={`400`}>
       <div className="text-center max-w-3xl mx-auto font-nunito">
         <p
           className={`md:text-3xl text-2xl ${

@@ -16,6 +16,7 @@ import { FaUsers } from "react-icons/fa";
 import { MdOutlineBookmark, MdPayment } from "react-icons/md";
 import { HiSquare3Stack3D } from "react-icons/hi2";
 import { ThemeContext } from "../Providers/ThemeProvider";
+import DashboardNavbar from "../Components/Dashboard/DashboardNavbar";
 
 const DashboardLayout = () => {
   const [userRole] = useUserRole();
@@ -183,7 +184,7 @@ const DashboardLayout = () => {
 
   return (
     <>
-      <div className="flex">
+      <div>
         <div className="min-w-[80px] bg-accent fixed h-full">
           <Link to="/" className="block text-center">
             <img
@@ -206,7 +207,8 @@ const DashboardLayout = () => {
             {userRole === "Student" && studentMenu}
           </ul>
         </div>
-        <div className="w-full py-24">
+        <DashboardNavbar />
+        <div className="w-full py-10">
           <Outlet />
         </div>
       </div>
