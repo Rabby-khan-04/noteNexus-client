@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import drum from "../../../assets/Images/Home/sub-banner-01.png";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
+import { JackInTheBox } from "react-awesome-reveal";
 
 const DrumSection = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -8,7 +9,9 @@ const DrumSection = () => {
     <section className={`${darkMode ? "bg-[#151515]" : "bg-white"} py-16`}>
       <div className="container grid lg:grid-cols-2 gap-10">
         <div>
-          <img src={drum} className="w-full" alt="" />
+          <JackInTheBox>
+            <img src={drum} className="w-full" alt="" />
+          </JackInTheBox>
         </div>
         <div className="self-center lg:text-left text-center">
           <h2
