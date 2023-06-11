@@ -21,11 +21,13 @@ import MySelectedClass from "../Pages/Dashobard/MySelectedClass/MySelectedClass"
 import EnrolledClasses from "../Pages/Dashobard/EnrolledClasses/EnrolledClasses";
 import Payment from "../Pages/Dashobard/Payment/Payment";
 import PaymentHistry from "../Pages/Dashobard/PaymentHistry/PaymentHistry";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -57,6 +59,7 @@ export const routes = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoutes>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "manage-classes",

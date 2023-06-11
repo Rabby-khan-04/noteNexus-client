@@ -189,7 +189,15 @@ const DashboardLayout = () => {
             <img
               className="inline-block m-5 h-[30px] w-[30px]"
               src={favIcon}
+              data-tooltip-id="back-to=home"
+              data-tooltip-content="Back To Home Page"
               alt=""
+            />
+            <ReactTooltip
+              id="back-to=home"
+              place="left"
+              type="dark"
+              effect="solid"
             />
           </Link>
           <ul className="mt-8 dashboard__menu space-y-4">
