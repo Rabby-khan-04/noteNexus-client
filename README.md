@@ -32,4 +32,4 @@
 
 ## Live Site Link
 
-- Live Link >> [Visit Now]()
+- Live Link >> [Visit Now](https://notenexus-81c99.web.app/)
