@@ -14,7 +14,8 @@ import { useAxiosSecure } from "../../../API/useAxiosSecure";
 
 const ClassCard = ({ item, refetchClasses }) => {
   let [isModalOpen, setIsModalOpen] = useState(false);
-  const { _id, email, image, instructor, name, price, seats, status } = item;
+  const { _id, email, image, instructor, name, price, seats, status, enroled } =
+    item;
   const [feedback, setFeedback] = useState("");
   const [axiosSecure] = useAxiosSecure();
 
@@ -137,6 +138,9 @@ const ClassCard = ({ item, refetchClasses }) => {
                 title={"$" + price}
               />
             </div>
+            <p className="text-base text-accent font-bold font-nunito">
+              Total Enroled Student: {enroled}
+            </p>
           </div>
           <div className=" space-y-2">
             <button

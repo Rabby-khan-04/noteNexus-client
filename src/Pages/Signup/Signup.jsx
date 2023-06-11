@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../API/useAuth";
 import { useForm } from "react-hook-form";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { FaEnvelope, FaImage, FaUserAlt } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaEye,
+  FaEyeSlash,
+  FaImage,
+  FaUserAlt,
+} from "react-icons/fa";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
 import signupImg from "../../assets/Images/Login/login.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -12,6 +18,8 @@ import Title from "../../Components/Shared/Title/Title";
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useAuth();
+  const [showPw, setShowPw] = useState(false);
+  const [showCPw, setShowCPw] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/";
@@ -110,6 +118,16 @@ const Signup = () => {
       });
   };
 
+  // Handle Show Password
+  const handleShowPassword = () => {
+    setShowPw(!showPw);
+  };
+
+  // Handle Show Password
+  const handleShowConfirmPassword = () => {
+    setShowCPw(!showCPw);
+  };
+
   return (
     <>
       <Title title="Sign up" />
@@ -150,24 +168,36 @@ const Signup = () => {
                     <RiLockPasswordFill className="text-xl" />
                   </label>
                   <input
-                    type="password"
+                    type={showPw ? "text" : "password"}
                     id="password"
                     className="input__field"
                     placeholder="Password"
                     {...register("password", { required: true })}
                   />
+                  <button
+                    onClick={handleShowPassword}
+                    className="text-xl text-accent py-2 px-3"
+                  >
+                    {showPw ? <FaEyeSlash /> : <FaEye />}
+                  </button>
                 </div>
                 <div className="input__wrapper">
                   <label htmlFor="confirmPassword" className="px-2">
                     <RiLockPasswordFill className="text-xl" />
                   </label>
                   <input
-                    type="password"
+                    type={showCPw ? "text" : "password"}
                     id="confirmPassword"
                     className="input__field"
                     placeholder="Confirm Password"
                     {...register("confirmPassword", { required: true })}
                   />
+                  <button
+                    onClick={handleShowConfirmPassword}
+                    className="text-xl text-accent py-2 px-3"
+                  >
+                    {showCPw ? <FaEyeSlash /> : <FaEye />}
+                  </button>
                 </div>
                 <div className="input__wrapper">
                   <label htmlFor="image" className="px-2">

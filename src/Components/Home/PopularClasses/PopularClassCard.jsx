@@ -34,6 +34,15 @@ const PopularClassCard = ({ item }) => {
       return;
     }
 
+    if (seats <= 0) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: `Class Is Full No Seats Available`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
     const checkBooking = { id: classData._id, email: user?.email };
 
     const res = await axiosSecure.get("/cheking-histry", {

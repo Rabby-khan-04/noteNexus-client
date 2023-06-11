@@ -5,7 +5,7 @@ import { useAuth } from "./useAuth";
 export const usePaymentHistry = () => {
   const [axiosSecure] = useAxiosSecure();
   const { user } = useAuth();
-  const { data: paymentHistry, isLoading: histryLoading } = useQuery({
+  const { data: paymentHistry = [], isLoading: histryLoading } = useQuery({
     queryKey: ["paymentHistry", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get("payment-histry");

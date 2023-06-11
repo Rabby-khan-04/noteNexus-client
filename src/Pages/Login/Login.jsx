@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import loginImg from "../../assets/Images/Login/login.png";
 import { useForm } from "react-hook-form";
-import { FaUserAlt } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
@@ -10,6 +10,7 @@ import { useAuth } from "../../API/useAuth";
 import Title from "../../Components/Shared/Title/Title";
 
 const Login = () => {
+  const [showPw, setShowPw] = useState(false);
   const { userSignin } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -45,6 +46,11 @@ const Login = () => {
           timer: 1500,
         });
       });
+  };
+
+  // Handle Show Password
+  const handleShowPassword = () => {
+    setShowPw(!showPw);
   };
 
   return (
@@ -86,12 +92,18 @@ const Login = () => {
                     <RiLockPasswordFill className="text-xl" />
                   </label>
                   <input
-                    type="password"
+                    type={showPw ? "text" : "password"}
                     id="password"
                     className="input__field"
                     placeholder="Password"
                     {...register("password", { required: true })}
                   />
+                  <button
+                    onClick={handleShowPassword}
+                    className="text-xl text-accent py-2 px-3"
+                  >
+                    {showPw ? <FaEyeSlash /> : <FaEye />}
+                  </button>
                 </div>
                 <input
                   className="btn btn-block btn-accent text-lg text-white"
