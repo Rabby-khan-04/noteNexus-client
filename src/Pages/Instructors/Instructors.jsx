@@ -21,9 +21,9 @@ const Instructors = () => {
     <>
       <Title title="Instructors" />
       <InstructorsBanner />
-      <section className={`py-16 ${darkMode ? "bg-black" : ""}`}>
+      <section className={`py-16 ${darkMode ? "bg-[#13111f]" : ""}`}>
         <div className="container">
-          <div className="grid grid-cols-4 gap-6 max-w-7xl mx-auto mt-12">
+          <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-3 max-w-7xl mx-auto mt-12 px-4 md:px-0">
             {instructors.map((instructor) => (
               <InstructorCard key={instructor._id} instructor={instructor} />
             ))}

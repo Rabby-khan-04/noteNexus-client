@@ -45,7 +45,7 @@ const Navbar = () => {
   );
 
   return (
-    <header className={`${darkMode ? "bg-black" : ""}`}>
+    <header className={`${darkMode ? "bg-[#13111f]" : ""}`}>
       <div className="container">
         <nav className="flex flex-row justify-between items-center py-2">
           <Logo />

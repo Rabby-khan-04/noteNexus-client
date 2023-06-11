@@ -102,7 +102,7 @@ const PopularClassCard = ({ item }) => {
       <div className="overflow-hidden rounded-lg">
         <img
           src={image}
-          className="h-64 w-full object-cover object-center rounded-lg group-hover:scale-110 transition-all duration-300"
+          className="h-80 md:h-64 w-full object-cover object-center rounded-lg group-hover:scale-110 transition-all duration-300"
           alt=""
         />
       </div>

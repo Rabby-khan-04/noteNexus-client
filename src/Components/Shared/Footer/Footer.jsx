@@ -15,14 +15,14 @@ const Footer = () => {
   const { darkMode } = useContext(ThemeContext);
   return (
     <footer>
-      <div className={`${darkMode ? "bg-black" : ""} h-[96px]`}></div>
+      <div className={`${darkMode ? "bg-[#13111f]" : ""} h-[96px]`}></div>
       <div className={`${darkMode ? "bg-gray-900" : "bg-accent"}`}>
         <div className="container pt-32 pb-5">
           <div className="-mt-44 mb-4">
             <Newsletter />
           </div>
-          <div className="grid grid-cols-4 gap-6">
-            <div className="col-span-2">
+          <div className="grid lg:grid-cols-4 sm:grid-cols-1 gap-6">
+            <div className="sm:col-span-2">
               <img src={footerLogo} className="block mb-3" alt="" />
               <p className="text-base text-white">
                 Unlock your musical potential with our online music courses.

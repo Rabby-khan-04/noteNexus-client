@@ -13,14 +13,29 @@ const InstructorCard = ({ instructor }) => {
   const { _id, email, image, name, role } = instructor;
   const { darkMode } = useContext(ThemeContext);
   return (
-    <div className="group flex-col flex items-center cursor-pointer">
-      <div className="rounded-full w-[240px] h-[240px] relative">
+    <div
+      className={`group flex-col flex items-center cursor-pointer group p-7 transition-all duration-300 rounded-2xl ${
+        darkMode ? " hover:bg-[#070415]" : " hover:bg-slate-200"
+      }`}
+    >
+      <div className=" relative">
         <img
           src={image}
-          className="w-[240px] h-[240px] object-cover object-center rounded-full inline-block p-4"
+          className="w-[240px] h-[240px] object-cover object-center rounded-full inline-block p-4 filter grayscale group-hover:filter-none transition-all duration-300"
           alt=""
         />
-        <div className="absolute w-full h-full border-2 border-primary top-0 left-0 right-0 rounded-full group-hover:border-8 transition-all duration-200"></div>
+        <div
+          className={`${
+            darkMode
+              ? "text-slate-200 bg-[#070415] group-hover:bg-[#13111f]"
+              : "text-accent bg-slate-200 group-hover:bg-[#f6f4ee]"
+          } flex justify-around absolute left-0 right-0 bottom-0 px-4 py-3 rounded-full text-lg transition-all duration-300`}
+        >
+          <FaFacebook />
+          <FaInstagram />
+          <FaTwitter />
+          <FaLinkedin />
+        </div>
       </div>
 
       <div className="text-center font-nunito mt-4 w-full">
@@ -50,16 +65,6 @@ const InstructorCard = ({ instructor }) => {
         >
           {role}
         </p>
-        <div
-          className={`${
-            darkMode ? "text-primary" : "text-accent"
-          } flex justify-center gap-3`}
-        >
-          <FaFacebook />
-          <FaInstagram />
-          <FaTwitter />
-          <FaLinkedin />
-        </div>
       </div>
     </div>
   );

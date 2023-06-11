@@ -6,15 +6,15 @@ const DrumSection = () => {
   const { darkMode } = useContext(ThemeContext);
   return (
     <section className={`${darkMode ? "bg-[#151515]" : "bg-white"} py-16`}>
-      <div className="container grid grid-cols-2 gap-10">
+      <div className="container grid lg:grid-cols-2 gap-10">
         <div>
           <img src={drum} className="w-full" alt="" />
         </div>
-        <div className="self-center">
+        <div className="self-center lg:text-left text-center">
           <h2
             className={`${
               darkMode ? "text-primary" : "text-accent"
-            } font-luckiest text-6xl mb-4`}
+            } font-luckiest xl:text-6xl md:text-5xl text-4xl mb-4`}
           >
             Music brings harmony to the world.
           </h2>

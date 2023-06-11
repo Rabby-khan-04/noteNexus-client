@@ -13,9 +13,9 @@ const AllClasses = () => {
     });
   }, []);
   return (
-    <section className={`py-16 ${darkMode ? "bg-black" : ""}`}>
+    <section className={`py-16 ${darkMode ? "bg-[#13111f]" : ""}`}>
       <div className="container">
-        <div className="grid grid-cols-3 gap-6 max-w-7xl mx-auto mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-12">
           {classes.map((item) => (
             <PopularClassCard key={item._id} item={item} />
           ))}
